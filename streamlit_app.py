@@ -11,8 +11,8 @@ st.write(
     """
 )
 
-# Get the current active Snowpark session
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 # Add a text input for the smoothie's name
 name_on_order = st.text_input("Name on Smoothie:")
