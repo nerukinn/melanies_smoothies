@@ -1,6 +1,6 @@
 # Import python packages
 import streamlit as st
-# REMOVE THIS LINE: from snowflake.snowpark.context import get_active_session
+
 import snowflake.snowpark.functions as F
 import pandas as pd
 from snowflake.snowpark.functions import col, when_matched # Ensure when_matched is imported
