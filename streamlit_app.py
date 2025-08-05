@@ -11,7 +11,7 @@ st.write(
     """
 )
 
-
+# Get the current active Snowpark session
 session = get_active_session()
 
 # Add a text input for the smoothie's name
