@@ -1,21 +1,17 @@
-# Import python packages
 import streamlit as st
-from snowflake.snowpark.functions import col # Only needed if you use 'col' directly or 'when_matched' in this specific app
+from snowflake.snowpark.functions import col 
 
-# Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw: ")
 st.write(
     """Choose the fruits you want in your custom Smoothie!
     """
 )
 
-# Establish connection to Snowflake using st.connection
-# This method will look for credentials in your .streamlit/secrets.toml file
 cnx = st.connection("snowflake")
 session = cnx.session()
 
 
-# Add a text input for the smoothie's name
+# Add a text input for thote smohie's name
 name_on_order = st.text_input("Name on Smoothie:")
 st.write('The name on your Smoothie will be:', name_on_order)
 
