@@ -1,8 +1,6 @@
 # Import python packages
 import streamlit as st
-import snowflake.snowpark.functions as F
-import pandas as pd
-from snowflake.snowpark.functions import col, when_matched
+from snowflake.snowpark.functions import col
 
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw: ")
