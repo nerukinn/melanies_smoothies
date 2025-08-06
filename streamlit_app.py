@@ -1,17 +1,23 @@
+# Import python packages
 import streamlit as st
-from snowflake.snowpark.functions import col
+# You need to import this library and give it an alias, like 'F'
+import snowflake.snowpark.functions as F
+import pandas as pd
 
+# Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw: ")
 st.write(
     """Choose the fruits you want in your custom Smoothie!
     """
 )
 
+# Get the current active Snowpark session using st.connection
+# This will now look for credentials in .streamlit/secrets.toml
 cnx = st.connection("snowflake")
 session = cnx.session()
 
 
-# Add a text input for thote smohie's name
+# Add a text input for the smoothie's name
 name_on_order = st.text_input("Name on Smoothie:")
 st.write('The name on your Smoothie will be:', name_on_order)
 
@@ -54,5 +60,6 @@ if ingredients_list:
         
         # Show a success message with the user's name
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+
 
 
