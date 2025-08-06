@@ -1,6 +1,7 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.functions import col
+import snowflake.snowpark.functions as F # Corrected this import statement
+# from snowflake.snowpark.functions import col # If you prefer 'col' directly, use this instead of 'as F'
 
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw: ")
@@ -58,4 +59,5 @@ if ingredients_list:
         
         # Show a success message with the user's name
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+
 
