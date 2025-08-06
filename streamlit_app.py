@@ -1,6 +1,8 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.functions import col # If you prefer 'col' directly, use this instead of 'as F'
+import snowflake.snowpark.functions as F # This import is correct for F.col
+import pandas as pd
+# from snowflake.snowpark.functions import col, when_matched # Only needed if you use 'col' directly or 'when_matched' in this specific app
 
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw: ")
@@ -9,8 +11,8 @@ st.write(
     """
 )
 
-# Get the current active Snowpark session using st.connection
-# This will now look for credentials in .streamlit/secrets.toml
+# Establish connection to Snowflake using st.connection
+# This method will look for credentials in your .streamlit/secrets.toml file
 cnx = st.connection("snowflake")
 session = cnx.session()
 
