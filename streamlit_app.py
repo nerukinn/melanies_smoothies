@@ -1,8 +1,6 @@
 # Import python packages
 import streamlit as st
-import snowflake.snowpark.functions as F # This import is correct for F.col
-import pandas as pd
-# from snowflake.snowpark.functions import col, when_matched # Only needed if you use 'col' directly or 'when_matched' in this specific app
+from snowflake.snowpark.functions import col # Only needed if you use 'col' directly or 'when_matched' in this specific app
 
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw: ")
