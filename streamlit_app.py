@@ -59,8 +59,9 @@ if ingredients_list:
         # Show a success message with the user's name
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
 
-# Get the current active Snowpark session using st.connection
-# This will now look for credentials in .streamlit/secrets.toml
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
 
 
 
