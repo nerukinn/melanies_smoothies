@@ -1,6 +1,6 @@
 # Import python packages
 import streamlit as st
-# You need to import this library and give it an alias, like 'F'
+from snowflake.snowpark.context import get_active_session
 import snowflake.snowpark.functions as F
 import pandas as pd
 
@@ -11,11 +11,9 @@ st.write(
     """
 )
 
-# Get the current active Snowpark session using st.connection
-# This will now look for credentials in .streamlit/secrets.toml
+# Get the current active Snowpark session
 cnx = st.connection("snowflake")
 session = cnx.session()
-
 
 # Add a text input for the smoothie's name
 name_on_order = st.text_input("Name on Smoothie:")
@@ -60,6 +58,9 @@ if ingredients_list:
         
         # Show a success message with the user's name
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+
+# Get the current active Snowpark session using st.connection
+# This will now look for credentials in .streamlit/secrets.toml
 
 
 
