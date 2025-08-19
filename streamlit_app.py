@@ -1,8 +1,8 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
 import snowflake.snowpark.functions as F
 import pandas as pd
+import requests # This line is critical for the requests.get() call to work
 
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw: ")
@@ -11,9 +11,11 @@ st.write(
     """
 )
 
-# Get the current active Snowpark session
+# Get the current active Snowpark session using st.connection
+# This will now look for credentials in .streamlit/secrets.toml
 cnx = st.connection("snowflake")
 session = cnx.session()
+
 
 # Add a text input for the smoothie's name
 name_on_order = st.text_input("Name on Smoothie:")
@@ -67,9 +69,3 @@ sf_df = pd.json_normalize(smoothiefroot_response.json())
 
 # Put the JSON data into a dataframe and display it
 st.dataframe(data=sf_df, use_container_width=True)
-
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
-
-
