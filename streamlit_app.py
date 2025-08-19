@@ -53,7 +53,7 @@ if ingredients_list:
         st.subheader(f'{fruit_chosen} Nutrition Information')
         
         # Use the search_on term in the API call
-        smoothiefroot_response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
+       fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
         
         # Check if the API request was successful before trying to display the data
         if smoothiefroot_response.status_code == 200:
@@ -83,5 +83,4 @@ if ingredients_list:
         
         # Show a success message with the user's name
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
-
 
