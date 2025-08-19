@@ -59,9 +59,15 @@ if ingredients_list:
         # Show a success message with the user's name
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
 
-import requests
+# New section to display smoothie root nutrition information
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
+
+# Expose the JSON data from the API response
+sf_df = pd.json_normalize(smoothiefroot_response.json())
+
+# Put the JSON data into a dataframe and display it
+st.dataframe(data=sf_df, use_container_width=True)
+
 
 
 
