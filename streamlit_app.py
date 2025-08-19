@@ -63,20 +63,24 @@ if ingredients_list:
             # Display a message if the fruit was not found
             st.write(f"Sorry, data for {fruit_chosen} was not found.")
 
-    # Construct the INSERT statement as a string
-    my_insert_stmt = f"""
-        INSERT INTO smoothies.public.orders(ingredients, name_on_order)
-        VALUES ('{ingredients_string.strip()}', '{name_on_order}')
-    """
-    
+    # Create a checkbox to mark the order as filled
+    order_filled = st.checkbox('Mark as Filled')
+
     # Create the submit button
     time_to_insert = st.button('Submit Order')
 
     # Check if the button was clicked
     if time_to_insert:
+        # Construct the INSERT statement as a string
+        # Now we include the 'order_filled' column and its corresponding value
+        my_insert_stmt = f"""
+            INSERT INTO smoothies.public.orders(ingredients, name_on_order, order_filled)
+            VALUES ('{ingredients_string.strip()}', '{name_on_order}', {order_filled})
+        """
+        
         # Execute the SQL statement using the Snowpark session
-        # .collect() will run the query and return the results
         session.sql(my_insert_stmt).collect()
         
         # Show a success message with the user's name
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+
