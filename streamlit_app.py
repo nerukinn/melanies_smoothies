@@ -53,8 +53,7 @@ if ingredients_list:
         st.subheader(f'{fruit_chosen} Nutrition Information')
         
         # Use the search_on term in the API call
-       fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
-        
+      sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
         # Check if the API request was successful before trying to display the data
         if smoothiefroot_response.status_code == 200:
             sf_df = pd.json_normalize(smoothiefroot_response.json())
